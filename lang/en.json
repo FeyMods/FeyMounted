@@ -1,0 +1,47 @@
+{
+  "FEYMOUNTED": {
+    "Settings": {
+      "CompanionMode": {
+        "Name": "Companion token visibility",
+        "Hint": "How the hidden second actor's token is kept out of sight. Transparent tokens are visible to every user (so vision and animations work) but drawn fully see-through. Hidden tokens use Foundry's GM-hidden flag.",
+        "Transparent": "Transparent (recommended)",
+        "Hidden": "GM-hidden"
+      },
+      "ShowBadge": {
+        "Name": "Show rider target badge",
+        "Hint": "Show a label on the main token when its linked actor is targeted, because the linked token itself is invisible."
+      }
+    },
+    "HUD": {
+      "Link": "Link a second actor to this token",
+      "Unlink": "Unlink second actor"
+    },
+    "Link": {
+      "Title": "Link Second Actor",
+      "Label": "Rider",
+      "Hint": "This actor gets an invisible token that follows this one. Targeting this token will ask which actor you mean.",
+      "Confirm": "Link",
+      "Image": {
+        "Legend": "Token Images",
+        "unmounted": "Image without rider",
+        "mounted": "Image with rider",
+        "Hint": "Linking switches the token to the rider image, and unlinking switches it back. Leave the rider image empty to keep the token image unchanged. These images are saved on this token's actor and used in every scene."
+      },
+      "NoActors": "There are no player characters to link.",
+      "Linked": "{companion} is now linked to {primary}."
+    },
+    "Unlink": {
+      "Title": "Unlink Second Actor",
+      "Content": "Remove <strong>{companion}</strong> from <strong>{primary}</strong>? Their invisible token will be deleted from this scene.",
+      "Unlinked": "{companion} has been unlinked from {primary}."
+    },
+    "Target": {
+      "Title": "Choose Target",
+      "Content": "Which actor on <strong>{name}</strong> are you targeting?",
+      "Both": "Both"
+    },
+    "Errors": {
+      "GMOnly": "Only a GM can link or unlink actors."
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "feymounted",
+  "title": "Fey Mounted",
+  "description": "Link a second actor (e.g. a rider) to a token (e.g. a mount). Targeting the token asks which actor you mean, so damage, effects and animations land on the correct character sheet without range problems.",
+  "version": "0.1.0",
+  "authors": [{ "name": "Zantid" }],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.351",
+    "maximum": "13"
+  },
+  "esmodules": ["scripts/main.mjs"],
+  "styles": ["styles/feymounted.css"],
+  "languages": [
+    { "lang": "en", "name": "English", "path": "lang/en.json" }
+  ]
+}
