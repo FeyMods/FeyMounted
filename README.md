@@ -17,17 +17,6 @@ handling:
 - Automated Animations / DnD5e Animations, which play on the target's location
 - Range and distance checks, because both actors are measured from the same position
 
-## Install (development)
-
-Foundry needs the folder name to match the module id, which is `feymounted`. Link this repo into your data
-folder (in an elevated PowerShell):
-
-```powershell
-New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\FoundryVTT\Data\modules\feymounted" -Target "G:\Projects\Claude\FeyMounted\FeyMounted"
-```
-
-Then turn on **Fey Mounted** under *Manage Modules* in your world.
-
 ## Usage
 
 1. **GM:** right-click the mount's token to open the Token HUD. Click the **horse** button and pick the
