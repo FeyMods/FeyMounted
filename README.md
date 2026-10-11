@@ -4,13 +4,6 @@ A Foundry VTT v13 module that lets one token stand for two actors. A typical use
 When you target the token, a popup asks whether you mean the **mount**, the **rider**, or **both**.
 Damage, effects and animations then land on the correct character sheet.
 
-## Installing in Foundry
-
-In Foundry's **Add-on Modules → Install Module**, paste this manifest URL:
-
-```
-https://github.com/FeyMods/FeyMounted/releases/latest/download/module.json
-```
 
 ## How it works
 
@@ -47,6 +40,15 @@ deletes its companion.
 - **Companion token visibility** (world): *Transparent* (the default) or *GM-hidden*. Choose Transparent if
   the rider is a player character: their vision still works and animations play for everyone.
 - **Show rider target badge** (client): turns the label above the mount on or off.
+
+## Installing in Foundry
+
+In Foundry's **Add-on Modules → Install Module**, paste this manifest URL:
+
+```
+https://github.com/FeyMods/FeyMounted/releases/latest/download/module.json
+```
+
 
 ## Macro API
 
