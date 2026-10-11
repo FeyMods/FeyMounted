@@ -9,7 +9,7 @@ Damage, effects and animations then land on the correct character sheet.
 In Foundry's **Add-on Modules → Install Module**, paste this manifest URL:
 
 ```
-https://github.com/Zantid/FeyMounted/releases/latest/download/module.json
+https://github.com/FeyMods/FeyMounted/releases/latest/download/module.json
 ```
 
 ## How it works
