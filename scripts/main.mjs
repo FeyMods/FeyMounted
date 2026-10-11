@@ -4,6 +4,7 @@ import {
 } from "./links.mjs";
 import { registerTargetingHooks } from "./targeting.mjs";
 import { registerHUDHooks } from "./hud.mjs";
+import { registerSocket } from "./socket.mjs";
 
 Hooks.once("init", () => {
   game.settings.register(MODULE_ID, SETTINGS.COMPANION_MODE, {
@@ -32,6 +33,7 @@ Hooks.once("init", () => {
   registerLinkHooks();
   registerTargetingHooks();
   registerHUDHooks();
+  registerSocket();
 
   // Macro-friendly API: game.modules.get("feymounted").api
   game.modules.get(MODULE_ID).api = {

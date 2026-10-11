@@ -17,6 +17,7 @@
     "verified": "13.351",
     "maximum": "13"
   },
+  "socket": true,
   "esmodules": [
     "scripts/main.mjs"
   ],

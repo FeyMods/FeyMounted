@@ -27,7 +27,7 @@
         "mounted": "Image with rider",
         "Hint": "Linking switches the token to the rider image, and unlinking switches it back. Leave the rider image empty to keep the token image unchanged. These images are saved on this token's actor and used in every scene."
       },
-      "NoActors": "There are no player characters to link.",
+      "NoActors": "There are no player characters you can link.",
       "Linked": "{companion} is now linked to {primary}."
     },
     "Unlink": {
@@ -41,7 +41,12 @@
       "Both": "Both"
     },
     "Errors": {
-      "GMOnly": "Only a GM can link or unlink actors."
+      "GMOnly": "Only a GM can link or unlink actors.",
+      "NoGM": "A GM must be connected to link or unlink actors.",
+      "Timeout": "The GM's client did not respond. Make sure the GM's Foundry tab is open and has been reloaded since the module was updated, then try again.",
+      "NoSocket": "Fey Mounted: players can't link their own mounts until Foundry is fully restarted. The running server loaded an older version of this module.",
+      "SlowGM": "The GM's client is taking a long time to finish. Check the token before trying again.",
+      "Permission": "You must own both the token and the rider to link or unlink them."
     }
   }
 }

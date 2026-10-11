@@ -19,10 +19,12 @@ handling:
 
 ## Usage
 
-1. **GM:** right-click the mount's token to open the Token HUD. Click the **horse** button and pick the
+1. **GM or the mount's owner:** right-click the mount's token to open the Token HUD. Click the **horse** button and pick the
    rider's actor. You can also choose an **Image without rider** and an **Image with rider**. Linking switches
    the token to the rider image, and unlinking (or deleting the rider's token) switches it back. The images are
    saved on the mount's actor, so the dialog remembers them for that mount in every scene.
+   Players can do this for mounts they own, and they can only pick riders they own. A GM must be connected,
+   because the GM's client creates and deletes the rider's token for them.
 2. **Anyone:** target the mount as usual (T key or right-click > target). Choose *Mount*, *Rider*, or *Both*.
    Closing the popup keeps the mount targeted.
 3. Target the mount again to clear a rider target, just like toggling a normal target.

@@ -1,12 +1,13 @@
 import { MODULE_ID, escapeHTML, localize } from "./constants.mjs";
-import { getCompanion, getMountImages, isCompanion, linkActor, setMountImages, unlinkActor } from "./links.mjs";
+import { getCompanion, getMountImages, isCompanion } from "./links.mjs";
+import { canManageLink, canRide, requestLink, requestUnlink } from "./socket.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 
 async function promptLink(primary) {
-  // Only player characters can ride.
+  // Only player characters can ride, and players can only pick characters they own.
   const actors = game.actors
-    .filter(a => (a.type === "character") && (a !== primary.actor) && (a !== primary.baseActor))
+    .filter(a => canRide(a) && (a !== primary.actor) && (a !== primary.baseActor))
     .sort((a, b) => a.name.localeCompare(b.name, game.i18n.lang));
   if ( !actors.length ) return ui.notifications.warn(localize("Link.NoActors"));
 
@@ -43,8 +44,11 @@ async function promptLink(primary) {
   const actor = game.actors.get(data?.actorId);
   if ( !actor ) return;
 
-  await setMountImages(primary, { mounted: data.mounted, unmounted: data.unmounted });
-  await linkActor(primary, actor);
+  try {
+    await requestLink(primary, actor, { mounted: data.mounted, unmounted: data.unmounted });
+  } catch(err) {
+    return ui.notifications.error(err.message);
+  }
   ui.notifications.info(localize("Link.Linked", { companion: actor.name, primary: primary.name }));
 }
 
@@ -58,14 +62,17 @@ async function promptUnlink(primary) {
   });
   if ( !confirmed ) return;
 
-  await unlinkActor(primary);
+  try {
+    await requestUnlink(primary);
+  } catch(err) {
+    return ui.notifications.error(err.message);
+  }
   ui.notifications.info(localize("Unlink.Unlinked", { companion: companion?.name, primary: primary.name }));
 }
 
 function onRenderTokenHUD(hud, html) {
-  if ( !game.user.isGM ) return;
   const primary = hud.object?.document;
-  if ( !primary || isCompanion(primary) ) return;
+  if ( !primary || isCompanion(primary) || !canManageLink(primary) ) return;
 
   const linked = !!getCompanion(primary);
   const button = document.createElement("button");
