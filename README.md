@@ -4,6 +4,14 @@ A Foundry VTT v13 module that lets one token stand for two actors. A typical use
 When you target the token, a popup asks whether you mean the **mount**, the **rider**, or **both**.
 Damage, effects and animations then land on the correct character sheet.
 
+## Installing in Foundry
+
+In Foundry's **Add-on Modules → Install Module**, paste this manifest URL:
+
+```
+https://github.com/Zantid/FeyMounted/releases/latest/download/module.json
+```
+
 ## How it works
 
 Linking a second actor to a token creates an **invisible companion token** for that actor. The companion is
