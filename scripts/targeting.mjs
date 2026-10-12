@@ -36,7 +36,8 @@ function onTargetToken(user, token, targeted) {
     return;
   }
 
-  // Defer so area templates that target the mount and its companion in one pass can finish first.
+  // Defer so area targeting (templates in v13, regions in v14) that hits the mount and its companion in one pass
+  // can finish first.
   if ( pending.has(token.id) ) return;
   pending.add(token.id);
   setTimeout(() => promptForTarget(token, companion).finally(() => pending.delete(token.id)), 0);

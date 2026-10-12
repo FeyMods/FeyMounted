@@ -1,6 +1,6 @@
 # Fey Mounted
 
-A Foundry VTT v13 module that lets one token stand for two actors. A typical use is a rider on a mount.
+A Foundry VTT module for v13 and v14 that lets one token stand for two actors. A typical use is a rider on a mount.
 When you target the token, a popup asks whether you mean the **mount**, the **rider**, or **both**.
 Damage, effects and animations then land on the correct character sheet.
 

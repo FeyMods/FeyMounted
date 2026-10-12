@@ -60,7 +60,9 @@ export async function linkActor(primary, actor) {
     ring: { enabled: false },
     flags: { [MODULE_ID]: { [FLAGS.PARENT_TOKEN]: primary.id } }
   };
-  for ( const field of SYNCED_FIELDS ) overrides[field] = primary[field];
+  for ( const field of SYNCED_FIELDS ) {
+    if ( primary.schema.has(field) ) overrides[field] = primary[field];
+  }
 
   // Flag the primary before the companion exists, so the companion's createToken hook sees a valid link.
   const companionId = foundry.utils.randomID();
@@ -93,9 +95,11 @@ export async function unlinkActor(primary) {
  * @returns {object}
  */
 function getUnlinkUpdate(primary) {
+  // Null the flags rather than deleting them: the "-=" deletion syntax is deprecated in Foundry v14 and its
+  // replacement doesn't exist in v13. Every lookup treats a null flag the same as a missing one.
   const update = {
-    [`flags.${MODULE_ID}.-=${FLAGS.COMPANION_TOKEN}`]: null,
-    [`flags.${MODULE_ID}.-=${FLAGS.COMPANION_ACTOR}`]: null
+    [`flags.${MODULE_ID}.${FLAGS.COMPANION_TOKEN}`]: null,
+    [`flags.${MODULE_ID}.${FLAGS.COMPANION_ACTOR}`]: null
   };
   const { mounted, unmounted } = getMountImages(primary);
   if ( mounted && unmounted ) update["texture.src"] = unmounted;

@@ -88,7 +88,7 @@ function onRenderTokenHUD(hud, html) {
     if ( linked ) promptUnlink(primary);
     else promptLink(primary);
   });
-  html.querySelector(".col.left")?.append(button);
+  (html.querySelector(".col.left") ?? html.querySelector(".col"))?.append(button);
 }
 
 export function registerHUDHooks() {

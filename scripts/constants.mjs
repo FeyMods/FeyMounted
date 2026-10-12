@@ -16,8 +16,11 @@ export const SETTINGS = {
   SHOW_BADGE: "showBadge"
 };
 
-/** Token fields mirrored from the primary token onto its companion. */
-export const SYNCED_FIELDS = ["x", "y", "elevation", "width", "height"];
+/**
+ * Token fields mirrored from the primary token onto its companion.
+ * `depth` and `level` only exist from Foundry v14 (Scene Levels), so callers skip fields the schema lacks.
+ */
+export const SYNCED_FIELDS = ["x", "y", "elevation", "width", "height", "depth", "level"];
 
 export function localize(key, data) {
   const full = `FEYMOUNTED.${key}`;
