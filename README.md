@@ -60,3 +60,7 @@ api.getCompanion(mountTokenDoc); // -> rider TokenDocument | null
 api.getParent(riderTokenDoc);    // -> mount TokenDocument | null
 await api.setMountImages(mountTokenDoc, { unmounted: "path/horse.webp", mounted: "path/horse-rider.webp" });
 ```
+
+## License
+
+[MIT](LICENSE)
