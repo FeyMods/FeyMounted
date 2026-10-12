@@ -1,4 +1,4 @@
-import { MODULE_ID, escapeHTML, localize } from "./constants.mjs";
+import { MODULE_ID, displayName, escapeHTML, localize } from "./constants.mjs";
 import { getCompanion, getMountImages, isCompanion } from "./links.mjs";
 import { canManageLink, canRide, requestLink, requestUnlink } from "./socket.mjs";
 
@@ -49,12 +49,12 @@ async function promptLink(primary) {
   } catch(err) {
     return ui.notifications.error(err.message);
   }
-  ui.notifications.info(localize("Link.Linked", { companion: actor.name, primary: primary.name }));
+  ui.notifications.info(localize("Link.Linked", { companion: actor.name, primary: displayName(primary) }));
 }
 
 async function promptUnlink(primary) {
   const companion = getCompanion(primary);
-  const names = { companion: escapeHTML(companion?.name), primary: escapeHTML(primary.name) };
+  const names = { companion: escapeHTML(displayName(companion)), primary: escapeHTML(displayName(primary)) };
   const confirmed = await DialogV2.confirm({
     window: { title: localize("Unlink.Title"), icon: "fa-solid fa-link-slash" },
     content: `<p>${localize("Unlink.Content", names)}</p>`,
@@ -67,7 +67,7 @@ async function promptUnlink(primary) {
   } catch(err) {
     return ui.notifications.error(err.message);
   }
-  ui.notifications.info(localize("Unlink.Unlinked", { companion: companion?.name, primary: primary.name }));
+  ui.notifications.info(localize("Unlink.Unlinked", { companion: displayName(companion), primary: displayName(primary) }));
 }
 
 function onRenderTokenHUD(hud, html) {

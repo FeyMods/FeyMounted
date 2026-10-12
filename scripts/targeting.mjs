@@ -1,4 +1,4 @@
-import { MODULE_ID, SETTINGS, escapeHTML, localize } from "./constants.mjs";
+import { MODULE_ID, SETTINGS, displayName, escapeHTML, localize } from "./constants.mjs";
 import { getCompanion, getParent } from "./links.mjs";
 
 const { DialogV2 } = foundry.applications.api;
@@ -50,7 +50,7 @@ function onTargetToken(user, token, targeted) {
 function portrait(tokenDoc) {
   return `<figure>
     <img src="${escapeHTML(tokenDoc.texture.src)}" alt="">
-    <figcaption>${escapeHTML(tokenDoc.name)}</figcaption>
+    <figcaption>${escapeHTML(displayName(tokenDoc))}</figcaption>
   </figure>`;
 }
 
@@ -70,11 +70,11 @@ async function promptForTarget(token, companion) {
   const choice = await DialogV2.wait({
     window: { title: localize("Target.Title"), icon: "fa-solid fa-crosshairs" },
     classes: [MODULE_ID],
-    content: `<p>${localize("Target.Content", { name: escapeHTML(primaryDoc.name) })}</p>
+    content: `<p>${localize("Target.Content", { name: escapeHTML(displayName(primaryDoc)) })}</p>
       <div class="feymounted-choice">${portrait(primaryDoc)}${portrait(companionDoc)}</div>`,
     buttons: [
-      { action: "primary", label: primaryDoc.name, icon: "fa-solid fa-horse", default: true },
-      { action: "companion", label: companionDoc.name, icon: "fa-solid fa-user" },
+      { action: "primary", label: displayName(primaryDoc), icon: "fa-solid fa-horse", default: true },
+      { action: "companion", label: displayName(companionDoc), icon: "fa-solid fa-user" },
       { action: "both", label: localize("Target.Both"), icon: "fa-solid fa-users" }
     ],
     rejectClose: false
@@ -114,7 +114,7 @@ function onRefreshToken(token) {
     badge = token[BADGE_KEY] = token.addChild(new foundry.canvas.containers.PreciseText("", style));
     badge.anchor.set(0.5, 1);
   }
-  badge.text = `◎ ${companion.document.name}`;
+  badge.text = `◎ ${displayName(companion.document)}`;
   badge.style.fill = users[0].color.css;
   badge.position.set(token.w / 2, -4);
   badge.visible = true;

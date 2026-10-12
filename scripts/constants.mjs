@@ -37,3 +37,14 @@ export function escapeHTML(value) {
 export function isResponsibleGM() {
   return game.users.activeGM?.isSelf ?? false;
 }
+
+/**
+ * The name to show for a token: the name of the actor in the sidebar, which stays current when the actor is renamed
+ * after the token was placed. Unlinked tokens use their base actor too, because Foundry v14 copies a differing token
+ * name onto the unlinked token's own actor when it is placed. Falls back to the token's own name if it has no actor.
+ * @param {TokenDocument} tokenDoc
+ * @returns {string}
+ */
+export function displayName(tokenDoc) {
+  return tokenDoc?.baseActor?.name ?? tokenDoc?.actor?.name ?? tokenDoc?.name ?? "";
+}
